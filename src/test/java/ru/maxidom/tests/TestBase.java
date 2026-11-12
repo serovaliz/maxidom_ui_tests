@@ -20,15 +20,8 @@ public abstract class TestBase {
         Configuration.pageLoadStrategy = "eager";
         Configuration.screenshots = true;
         Configuration.savePageSource = true;
-        String remote = System.getProperty("remote", "");
-        if (!remote.isBlank()) {
-            Configuration.remote = remote;
-        }
-        if (Configuration.browser.equals("chrome")) {
-            ChromeOptions options = new ChromeOptions();
-            options.addArguments("--lang=ru-RU");
-            Configuration.browserCapabilities = options;
-        }
+        Configuration.timeout = 10000;
+        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide()
                 .screenshots(true)
                 .savePageSource(true));
