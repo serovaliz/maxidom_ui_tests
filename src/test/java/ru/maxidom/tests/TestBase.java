@@ -1,13 +1,15 @@
 package ru.maxidom.tests;
 
 import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.WebDriverRunner;
 import com.codeborne.selenide.logevents.SelenideLogger;
+import helpers.Attach;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
+
+import java.util.Map;
 
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 
@@ -21,7 +23,18 @@ public abstract class TestBase {
         Configuration.screenshots = true;
         Configuration.savePageSource = true;
         Configuration.timeout = 10000;
-        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
+        Configuration.browserVersion = System.getProperty("browserVersion", "");
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("selenoid:options", Map.<String, Object>of(
+                "enableVNC", true,
+                "enableVideo", true
+        ));
+        Configuration.remote = "https://" +
+                System.getProperty("remoteBrowserUrlLogin") +
+                ":" +
+                System.getProperty("remoteBrowserUrlPassword") +
+                "@" +
+                System.getProperty("remoteBrowserUrl", "selenoid.autotests.cloud/wd/hub");
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide()
                 .screenshots(true)
                 .savePageSource(true));
@@ -34,8 +47,11 @@ public abstract class TestBase {
 
     @AfterEach
     void closeBrowser() {
-        if (WebDriverRunner.hasWebDriverStarted()) {
-            closeWebDriver();
-        }
+        Attach.screenshotAs("Last screenshot");
+        Attach.pageSource();
+        Attach.browserConsoleLogs();
+        Attach.addVideo();
+        closeWebDriver();
+
     }
 }
