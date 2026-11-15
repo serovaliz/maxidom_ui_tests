@@ -1,0 +1,21 @@
+{
+  "base": {
+    "project": "${JOB_NAME}",
+    "environment": "${ENVIRONMENT}",
+    "comment": "tests complete",
+    "reportLink": "${BUILD_URL}",
+    "language": "en",
+    "allureFolder": "allure-report/",
+    "enableChart": true
+  },
+  "telegram": {
+    "token": "8795931461:AAHC2JHapYY1rRQ1mM9tygQhbR5lMP0RAD8",
+    "chat": "-1003914139220",
+    "replyTo": ""
+  },
+  "proxy": {
+    "type": "socks5",
+    "host": "proxy.qaguru.school",
+    "port": 7777
+  }
+}
