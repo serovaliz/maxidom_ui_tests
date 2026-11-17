@@ -7,24 +7,25 @@ import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverConditions.urlContaining;
 
 public class CatalogPage {
-    public CatalogPage shouldBeOpened() {
+    public CatalogPage shouldBeOpened(String title) {
         webdriver().shouldHave(urlContaining("/catalog/"));
-        $("h1").shouldHave(exactText("Каталог"));
+        $("h1").shouldHave(exactText(title));
         return this;
     }
 
-    @Step("Открыть категорию «Электроинструмент»")
-    public CatalogPage openPowerTools() {
-        $$("main a[href='/catalog/elektroinstrument/']").findBy(exactText("Электроинструмент"))
+    @Step("Открыть категорию: {name}")
+    public CatalogPage openCategory(String name, String href) {
+        $$("main a[href='" + href + "']").findBy(exactText(name))
                 .scrollIntoView("{block: 'center'}").shouldBe(visible).click();
         return this;
     }
 
-    @Step("Проверить категорию и её подраздел «Дрели»")
-    public CatalogPage shouldShowPowerTools() {
-        webdriver().shouldHave(urlContaining("/catalog/elektroinstrument/"));
-        $("h1").shouldHave(exactText("Электроинструмент"));
-        $$("main a[href='/catalog/dreli/']").findBy(exactText("Дрели")).shouldBe(visible);
+    @Step("Проверить категорию {title} и подраздел {subsectionName}")
+    public CatalogPage shouldShowCategory(String title, String urlPart,
+                                          String subsectionName, String subsectionHref) {
+        webdriver().shouldHave(urlContaining(urlPart));
+        $("h1").shouldHave(exactText(title));
+        $$("main a[href='" + subsectionHref + "']").findBy(exactText(subsectionName)).shouldBe(visible);
         return this;
     }
 }

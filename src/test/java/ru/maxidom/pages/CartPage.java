@@ -7,15 +7,15 @@ import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverConditions.urlContaining;
 
 public class CartPage {
-    public CartPage shouldBeOpened() {
+    public CartPage shouldBeOpened(String title) {
         webdriver().shouldHave(urlContaining("/personal/cart2/"));
-        $("h1").shouldHave(exactText("Корзина"));
+        $("h1").shouldHave(exactText(title));
         return this;
     }
 
-    @Step("Проверить пустую корзину нового посетителя")
-    public CartPage shouldBeEmpty() {
-        $("main").shouldHave(text("Нет товаров в корзине"));
+    @Step("Проверить пустую корзину: {emptyMessage}")
+    public CartPage shouldBeEmpty(String emptyMessage) {
+        $("main").shouldHave(text(emptyMessage));
         return this;
     }
 }

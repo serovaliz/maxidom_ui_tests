@@ -7,17 +7,17 @@ import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverConditions.urlContaining;
 
 public class ComparisonPage {
-    public ComparisonPage shouldBeOpened() {
+    public ComparisonPage shouldBeOpened(String breadcrumbText) {
         webdriver().shouldHave(urlContaining("/catalog/compare/"));
-        $("main .breadcrumbs").shouldHave(text("Сравнение товаров"));
+        $("main .breadcrumbs").shouldHave(text(breadcrumbText));
         return this;
     }
 
     @Step("Проверить наличие товара в сравнении: {productName}")
-    public ComparisonPage shouldContainProduct(String productName) {
-        $("h1").shouldHave(exactText("Сравнение товаров"));
+    public ComparisonPage shouldContainProduct(String title, String productName, String emptyListMessage) {
+        $("h1").shouldHave(exactText(title));
         $$(".container-compare .compare__card-title a").findBy(exactText(productName)).shouldBe(visible);
-        $("main").shouldNotHave(text("Список сравниваемых элементов пуст"));
+        $("main").shouldNotHave(text(emptyListMessage));
         return this;
     }
 }

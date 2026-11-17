@@ -1,7 +1,7 @@
 package ru.maxidom.pages;
 
 import io.qameta.allure.Step;
-import ru.maxidom.components.HeaderComponent;
+import ru.maxidom.pages.components.HeaderComponent;
 
 import static com.codeborne.selenide.Selenide.open;
 
