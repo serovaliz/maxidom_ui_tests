@@ -1,6 +1,6 @@
 package ru.maxidom.testdata;
 
-public final class testData {
+public final class TestData {
     public static final String EXISTING_PRODUCT = "Шуруповерт";
     public static final String UNKNOWN_QUERY = "zzzxqv987654321";
 
@@ -27,4 +27,5 @@ public final class testData {
     public static final String NO_SEARCH_RESULTS = "По вашему запросу ничего не найдено";
     public static final String EMPTY_CART = "Нет товаров в корзине";
     public static final String EMPTY_COMPARISON = "Список сравниваемых элементов пуст";
+
 }

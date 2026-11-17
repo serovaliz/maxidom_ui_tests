@@ -29,12 +29,12 @@ public abstract class TestBase {
                 "enableVNC", true,
                 "enableVideo", true
         ));
-        Configuration.remote = "https://" +
+/*        Configuration.remote = "https://" +
                 System.getProperty("remoteBrowserUrlLogin") +
                 ":" +
                 System.getProperty("remoteBrowserUrlPassword") +
                 "@" +
-                System.getProperty("remoteBrowserUrl", "selenoid.autotests.cloud/wd/hub");
+                System.getProperty("remoteBrowserUrl", "selenoid.autotests.cloud/wd/hub");*/
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide()
                 .screenshots(true)
                 .savePageSource(true));

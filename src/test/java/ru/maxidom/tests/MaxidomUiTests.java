@@ -4,7 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import ru.maxidom.pages.HomePage;
 import ru.maxidom.pages.SearchResultsPage;
-import ru.maxidom.testdata.testData;
+import ru.maxidom.testdata.TestData;
 
 
 @DisplayName("UI-автотесты для сайта Максидома")
@@ -16,8 +16,8 @@ public class MaxidomUiTests extends TestBase {
     void searchReturnsRelevantProducts() {
         homePage.openPage()
                 .header()
-                .searchFor(testData.EXISTING_PRODUCT, testData.SEARCH_RESULTS_TITLE)
-                .shouldHaveProducts(testData.EXISTING_PRODUCT);
+                .searchFor(TestData.EXISTING_PRODUCT, TestData.SEARCH_RESULTS_TITLE)
+                .shouldHaveProducts(TestData.EXISTING_PRODUCT);
     }
 
     @Test
@@ -25,8 +25,8 @@ public class MaxidomUiTests extends TestBase {
     void searchWithUnknownQueryShowsEmptyResults() {
         homePage.openPage()
                 .header()
-                .searchFor(testData.UNKNOWN_QUERY, testData.SEARCH_RESULTS_TITLE)
-                .shouldHaveNoResults(testData.NO_SEARCH_RESULTS);
+                .searchFor(TestData.UNKNOWN_QUERY, TestData.SEARCH_RESULTS_TITLE)
+                .shouldHaveNoResults(TestData.NO_SEARCH_RESULTS);
     }
 
     @Test
@@ -34,8 +34,8 @@ public class MaxidomUiTests extends TestBase {
     void searchResultOpensMatchingProduct() {
         SearchResultsPage results = homePage.openPage()
                 .header()
-                .searchFor(testData.EXISTING_PRODUCT, testData.SEARCH_RESULTS_TITLE)
-                .shouldHaveProducts(testData.EXISTING_PRODUCT);
+                .searchFor(TestData.EXISTING_PRODUCT, TestData.SEARCH_RESULTS_TITLE)
+                .shouldHaveProducts(TestData.EXISTING_PRODUCT);
 
         String productName = results.firstProductName();
 
@@ -48,15 +48,15 @@ public class MaxidomUiTests extends TestBase {
     void productCanBeAddedToComparison() {
         SearchResultsPage results = homePage.openPage()
                 .header()
-                .searchFor(testData.EXISTING_PRODUCT, testData.SEARCH_RESULTS_TITLE)
-                .shouldHaveProducts(testData.EXISTING_PRODUCT);
+                .searchFor(TestData.EXISTING_PRODUCT, TestData.SEARCH_RESULTS_TITLE)
+                .shouldHaveProducts(TestData.EXISTING_PRODUCT);
 
         String productName = results.firstProductName();
 
         results.addFirstProductToComparison()
                 .header()
-                .openComparison(testData.COMPARISON_LINK, testData.COMPARISON_TITLE)
-                .shouldContainProduct(testData.COMPARISON_TITLE, productName, testData.EMPTY_COMPARISON);
+                .openComparison(TestData.COMPARISON_LINK, TestData.COMPARISON_TITLE)
+                .shouldContainProduct(TestData.COMPARISON_TITLE, productName, TestData.EMPTY_COMPARISON);
     }
 
     @Test
@@ -64,8 +64,8 @@ public class MaxidomUiTests extends TestBase {
     void newVisitorHasEmptyCart() {
         homePage.openPage()
                 .header()
-                .openCart(testData.CART_LINK, testData.CART_TITLE)
-                .shouldBeEmpty(testData.EMPTY_CART);
+                .openCart(TestData.CART_LINK, TestData.CART_TITLE)
+                .shouldBeEmpty(TestData.EMPTY_CART);
     }
 
     @Test
@@ -73,13 +73,13 @@ public class MaxidomUiTests extends TestBase {
     void catalogOpensPowerToolsCategory() {
         homePage.openPage()
                 .header()
-                .openCatalog(testData.CATALOG_TITLE)
-                .openCategory(testData.POWER_TOOLS_NAME, testData.POWER_TOOLS_PATH)
+                .openCatalog(TestData.CATALOG_TITLE)
+                .openCategory(TestData.POWER_TOOLS_NAME, TestData.POWER_TOOLS_PATH)
                 .shouldShowCategory(
-                        testData.POWER_TOOLS_NAME,
-                        testData.POWER_TOOLS_PATH,
-                        testData.DRILLS_NAME,
-                        testData.DRILLS_PATH
+                        TestData.POWER_TOOLS_NAME,
+                        TestData.POWER_TOOLS_PATH,
+                        TestData.DRILLS_NAME,
+                        TestData.DRILLS_PATH
                 );
     }
 
@@ -88,12 +88,12 @@ public class MaxidomUiTests extends TestBase {
     void loginMethodCanBeSwitched() {
         homePage.openPage()
                 .header()
-                .openLogin(testData.LOGIN_TITLE)
-                .shouldShowLoginField(testData.PHONE_PLACEHOLDER, testData.EMAIL_PLACEHOLDER)
-                .chooseLoginMethod(testData.EMAIL_TAB)
-                .shouldShowLoginField(testData.EMAIL_PLACEHOLDER, testData.PHONE_PLACEHOLDER)
-                .chooseLoginMethod(testData.PHONE_TAB)
-                .shouldShowLoginField(testData.PHONE_PLACEHOLDER, testData.EMAIL_PLACEHOLDER);
+                .openLogin(TestData.LOGIN_TITLE)
+                .shouldShowLoginField(TestData.PHONE_PLACEHOLDER, TestData.EMAIL_PLACEHOLDER)
+                .chooseLoginMethod(TestData.EMAIL_TAB)
+                .shouldShowLoginField(TestData.EMAIL_PLACEHOLDER, TestData.PHONE_PLACEHOLDER)
+                .chooseLoginMethod(TestData.PHONE_TAB)
+                .shouldShowLoginField(TestData.PHONE_PLACEHOLDER, TestData.EMAIL_PLACEHOLDER);
     }
 
     @Test
@@ -101,12 +101,12 @@ public class MaxidomUiTests extends TestBase {
     void passwordVisibilityCanBeToggled() {
         homePage.openPage()
                 .header()
-                .openLogin(testData.LOGIN_TITLE)
-                .enterPassword(testData.DEMO_PASSWORD)
-                .shouldHidePassword(testData.DEMO_PASSWORD)
+                .openLogin(TestData.LOGIN_TITLE)
+                .enterPassword(TestData.DEMO_PASSWORD)
+                .shouldHidePassword(TestData.DEMO_PASSWORD)
                 .togglePasswordVisibility()
-                .shouldRevealPassword(testData.DEMO_PASSWORD)
+                .shouldRevealPassword(TestData.DEMO_PASSWORD)
                 .togglePasswordVisibility()
-                .shouldHidePassword(testData.DEMO_PASSWORD);
+                .shouldHidePassword(TestData.DEMO_PASSWORD);
     }
 }
