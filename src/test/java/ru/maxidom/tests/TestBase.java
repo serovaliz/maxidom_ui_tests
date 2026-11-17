@@ -20,16 +20,17 @@ public abstract class TestBase {
         Configuration.browser = System.getProperty("browser", "chrome");
         Configuration.browserSize = System.getProperty("browserSize", "1920x1080");
         Configuration.pageLoadStrategy = "eager";
-        Configuration.browserVersion = System.getProperty("browserVersion","149.0");
+        Configuration.browserVersion = System.getProperty("browserVersion","157.0");
         Configuration.screenshots = true;
         Configuration.savePageSource = true;
         Configuration.timeout = 10000;
-        Configuration.browserVersion = System.getProperty("browserVersion", "");
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("selenoid:options", Map.<String, Object>of(
                 "enableVNC", true,
-                "enableVideo", true
+                "enableVideo", true,
+                "enableLog", true
         ));
+        Configuration.browserCapabilities = capabilities;
         Configuration.remote = "https://" +
                 System.getProperty("remoteBrowserUrlLogin") +
                 ":" +
