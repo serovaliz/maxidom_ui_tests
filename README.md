@@ -51,7 +51,7 @@
 
 <p align="center">
 
-[Ссылка на Telegram-канал](https://t.me/+fPmfuGhyndkxNjJi)
+[Ссылка на Telegram-канал](https://t.me/forhomeworksqa)
 <p align="center">
 </p>
 <img title="TG notifications" src="media/screens/TGnotif.png">
