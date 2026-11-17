@@ -60,5 +60,5 @@
 
 <p align="center">
 </p>
-<img title="TG notifications" src="media/screens/">
+<img title="Selenoid video" src="media/screens/873b9334287f7c3065fb91cb53eb20a1.gif">
 
